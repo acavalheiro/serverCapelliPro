@@ -19,7 +19,7 @@ namespace CapelliPro.Authorization
         public ApplicationAuthorizationContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationAuthorizationContext>();
-            optionsBuilder.UseMySql("server=capellipro-db.cml59qbqutca.eu-west-1.rds.amazonaws.com;uid=admin;pwd=ENDe96z8K5qXlFlYM5yM;database=capellipro",new MySqlServerVersion(new Version(8,0,20)));
+            optionsBuilder.UseMySql("server=capellipro-db.cml59qbqutca.eu-west-1.rds.amazonaws.com;uid=admin;pwd=ENDe96z2bgsdfABC8K5qXlFlYM5yM;database=capellipro",new MySqlServerVersion(new Version(8,0,20)));
 
             return new ApplicationAuthorizationContext(optionsBuilder.Options);
         }
