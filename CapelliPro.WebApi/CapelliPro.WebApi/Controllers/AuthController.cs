@@ -116,7 +116,7 @@ namespace CapelliPro.WebApi.Controllers
         [Route("register")]  
         public async Task<IActionResult> Register([FromBody] RegisterModel model)  
         {  
-            var userExists = await this.userManager.FindByNameAsync(model.Username);  
+            var userExists = await this.userManager.FindByNameAsync(model.Email);  
             if (userExists != null)  
                 return this.StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });  
   
@@ -124,7 +124,7 @@ namespace CapelliPro.WebApi.Controllers
                                        {  
                                            Email = model.Email,  
                                            SecurityStamp = Guid.NewGuid().ToString(),  
-                                           UserName = model.Username  
+                                           UserName = model.Email  
                                        };  
             var result = await this.userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
