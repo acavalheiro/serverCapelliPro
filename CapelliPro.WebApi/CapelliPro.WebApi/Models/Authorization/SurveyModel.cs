@@ -19,7 +19,6 @@ namespace CapelliPro.WebApi.Models.Authorization
         [Required(ErrorMessage = "Hair Type is required")]  
         public string HairType { get; set; }  
   
-        [EmailAddress]  //????
         [Required(ErrorMessage = "Hair Colour is required")]  
         public string HairColour { get; set; }  
   

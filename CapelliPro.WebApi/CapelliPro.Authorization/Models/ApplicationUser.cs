@@ -16,5 +16,6 @@ namespace CapelliPro.Authorization.Models
     /// </summary>
     public class ApplicationUser : IdentityUser
     {
+        public string Name {get; set;}
     }
 }
