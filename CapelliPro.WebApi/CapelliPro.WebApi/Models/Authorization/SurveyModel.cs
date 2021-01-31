@@ -16,6 +16,9 @@ namespace CapelliPro.WebApi.Models.Authorization
     /// </summary>
     public class SurveyModel
     {
+        [Required(ErrorMessage = "Age is required")]  
+        public string Age { get; set; }  
+
         [Required(ErrorMessage = "Hair Type is required")]  
         public string HairType { get; set; }  
   
@@ -23,13 +26,19 @@ namespace CapelliPro.WebApi.Models.Authorization
         public string HairColour { get; set; }  
   
         [Required(ErrorMessage = "HasColouredHair is required")]  
-        public string HasColouredHair { get; set; }  
+        public bool HasColouredHair { get; set; }  
 
         [Required(ErrorMessage = "Number of Washes is required")]  
         public string NumberWashes { get; set; }  
 
+        [Required(ErrorMessage = "Living place is required")]  
+        public string LivingPlace { get; set; } 
+
+        [Required(ErrorMessage = "UseHeatTools is required")]  
+        public string UseHeatTools { get; set; } 
+
         [Required(ErrorMessage = "UseThermalProducts is required")]  
-        public string UseThermalProducts { get; set; }  
+        public bool UseThermalProducts { get; set; }  
 
         [Required(ErrorMessage = "Desired Hair is required")]  
         public string DesiredHair { get; set; }          

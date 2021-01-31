@@ -122,6 +122,7 @@ namespace CapelliPro.WebApi.Controllers
   
             ApplicationUser user = new ApplicationUser()  
                                        {  
+                                           Name = model.Name,
                                            Email = model.Email,  
                                            SecurityStamp = Guid.NewGuid().ToString(),  
                                            UserName = model.Email  
