@@ -26,62 +26,26 @@ namespace CapelliPro.WebApi.Controllers
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
 
-    using Microsoft.AspNetCore.Mvc;
+
     using Microsoft.Extensions.Logging;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-
 
     /// <summary>
     /// The survey controller.
     /// </summary>
+
     [Route("api/[controller]")]
     [ApiController]
     public class SurveyController : ControllerBase
     {
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        /// <summary>
-        /// The user manager.
-        /// </summary>
-        private readonly UserManager<ApplicationUser> userManager;
-
-        /// <summary>
-        /// The _configuration.
-        /// </summary>
-        private readonly IConfiguration _configuration;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SurveyController"/> class.
-        /// </summary>
-        /// <param name="userManager">
-        /// The user manager.
-        /// </param>
-        /// <param name="configuration">
-        /// The configuration.
-        /// </param>
-
-        public SurveyController(ILogger<WeatherForecastController> logger)
+        private readonly ILogger<SurveyController> _logger;
+        public SurveyController(ILogger<SurveyController> logger)
         {
             _logger = logger;
         }
 
-        /// <summary>
-        /// The survey.
-        /// </summary>
-        /// <param name="model">
-        /// The model.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
         [HttpPost]
         [Route("survey")]
-        public async Task<IActionResult> Survey([FromBody] SurveyModel model)
+        public async Task<IActionResult> SurveyResponseQuestions([FromBody] SurveyModel model)
         {
             SurveyResponse surveyResponse = new SurveyResponse()
             {
@@ -97,7 +61,6 @@ namespace CapelliPro.WebApi.Controllers
             };
         }
 
-        return this.Ok();
+        return this.Ok(); 
     }
 }
-
