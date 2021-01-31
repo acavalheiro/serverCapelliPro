@@ -22,6 +22,7 @@ namespace CapelliPro.WebApi
                 {
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls("http://0.0.0.0:5001");
+                    Console.WriteLine($"Running at pid {System.Diagnostics.Process.GetCurrentProcess().Id}");
                 });
     }
 }
