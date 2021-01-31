@@ -27,6 +27,6 @@ namespace CapelliPro.Authorization
         /// </param>
         public ApplicationAuthorizationContext(DbContextOptions<ApplicationAuthorizationContext> options) : base(options)  
         {  
-        } 
+        }
     }
 }
