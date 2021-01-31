@@ -81,16 +81,17 @@ namespace CapelliPro.WebApi.Controllers
                 var authClaims = new List<Claim>
                                      {
                                          new Claim(ClaimTypes.Name, user.UserName),
+                                         new Claim(ClaimTypes.NameIdentifier, user.Id),
                                          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                                      };
                 authClaims.AddRange(userRoles.Select(userRole => new Claim(ClaimTypes.Role, userRole)));
 
-                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["JWT:Secret"]));
+                var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(this._configuration["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
                     issuer: this._configuration["JWT:ValidIssuer"],
                     audience: this._configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(3),
+                    expires: DateTime.Now.AddHours(10),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
 

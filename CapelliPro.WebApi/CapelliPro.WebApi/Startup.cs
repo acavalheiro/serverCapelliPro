@@ -13,10 +13,13 @@ namespace CapelliPro.WebApi
 {
     using System;
     using System.Text;
+    using System.Threading.Tasks;
 
     using CapelliPro.Authorization;
     using CapelliPro.Authorization.Models;
-
+    using CapelliPro.Domain.Data;
+    using CapelliPro.Domain.Data.Repositories;
+    using CapelliPro.Domain.Interfaces;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -60,6 +63,15 @@ namespace CapelliPro.WebApi
                 .AddEntityFrameworkStores<ApplicationAuthorizationContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddDbContext<ApplicationContext>(
+                options => options.UseMySql(
+                    this.Configuration.GetConnectionString("AuthorizationConnectionString"),
+                    new MySqlServerVersion(new Version(8, 0, 20))));
+
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddAuthentication(options =>
                     {
                         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -71,14 +83,15 @@ namespace CapelliPro.WebApi
                 .AddJwtBearer(options =>
                     {
                         options.SaveToken = true;
-                        options.RequireHttpsMetadata = false;
+                        options.RequireHttpsMetadata = true;
                         options.TokenValidationParameters = new TokenValidationParameters()
                         {
-                            ValidateIssuer = true,
-                            ValidateAudience = true,
+                            ValidateIssuerSigningKey = false,
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
                             ValidAudience = Configuration["JWT:ValidAudience"],
                             ValidIssuer = Configuration["JWT:ValidIssuer"],
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Secret"]))
                         };
                     });
 
@@ -125,8 +138,9 @@ namespace CapelliPro.WebApi
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
