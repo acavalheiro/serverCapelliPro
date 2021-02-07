@@ -7,6 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+
+//igual ao modelo para a bd
+//respostas mais user id
+
 namespace CapelliPro.Domain.Models
 {
     /// <summary>

@@ -59,8 +59,10 @@ namespace CapelliPro.WebApi.Controllers
                 UseThermalProducts = model.UseThermalProducts,
                 DesiredHair = model.DesiredHair
             };
-        }
 
-        return this.Ok(); 
+            Console.WriteLine(model.ToString());
+
+            return this.Ok();
+        }
     }
 }

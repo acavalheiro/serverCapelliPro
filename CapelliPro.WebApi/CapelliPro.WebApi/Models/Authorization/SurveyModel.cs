@@ -26,7 +26,7 @@ namespace CapelliPro.WebApi.Models.Authorization
         public string HairColour { get; set; }  
   
         [Required(ErrorMessage = "HasColouredHair is required")]  
-        public bool HasColouredHair { get; set; }  
+        public string HasColouredHair { get; set; }  
 
         [Required(ErrorMessage = "Number of Washes is required")]  
         public string NumberWashes { get; set; }  
@@ -38,7 +38,7 @@ namespace CapelliPro.WebApi.Models.Authorization
         public string UseHeatTools { get; set; } 
 
         [Required(ErrorMessage = "UseThermalProducts is required")]  
-        public bool UseThermalProducts { get; set; }  
+        public string UseThermalProducts { get; set; }  
 
         [Required(ErrorMessage = "Desired Hair is required")]  
         public string DesiredHair { get; set; }          
