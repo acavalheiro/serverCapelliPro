@@ -61,7 +61,8 @@ namespace CapelliPro.WebApi.Controllers
 
             var currentUser = this.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier);
 
-            var dataToInsertOnDatabase = new Survey {UserId="563",
+            var dataToInsertOnDatabase = new Survey {
+                UserId = model.UserId,
                 Age = model.Age,
                 HairType = model.HairType,
                 HairColour = model.HairColour,

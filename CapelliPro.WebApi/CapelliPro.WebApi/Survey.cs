@@ -4,6 +4,8 @@ namespace CapelliPro.WebApi
 {
     public class Survey
     {
+        public string UserId { get; set; }
+
         public string Age { get; set; }  
 
         public string HairType { get; set; }  
