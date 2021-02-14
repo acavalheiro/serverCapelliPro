@@ -43,14 +43,14 @@ namespace CapelliPro.WebApi.Controllers
     public class SurveyController : ControllerBase
     {
         private readonly ILogger<SurveyController> _logger;
-        private readonly IAsyncRepository<Example> _exampleAsyncRepository;
+        private readonly IAsyncRepository<Survey> _surveyAsyncRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public SurveyController(ILogger<SurveyController> logger,  IAsyncRepository<Example> exampleAsyncRepository, IUnitOfWork unitOfWork)
+        public SurveyController(ILogger<SurveyController> logger,  IAsyncRepository<Survey> surveyAsyncRepository, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            this._exampleAsyncRepository = exampleAsyncRepository;
+            this._surveyAsyncRepository = surveyAsyncRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -61,7 +61,8 @@ namespace CapelliPro.WebApi.Controllers
 
             var currentUser = this.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier);
 
-            var dataToInserOnDatabase = new Survey {Age = model.Age,
+            var dataToInsertOnDatabase = new Survey {UserId="563",
+                Age = model.Age,
                 HairType = model.HairType,
                 HairColour = model.HairColour,
                 HasColouredHair = model.HasColouredHair,
@@ -71,24 +72,9 @@ namespace CapelliPro.WebApi.Controllers
                 UseThermalProducts = model.UseThermalProducts,
                 DesiredHair = model.DesiredHair };
 
-            await this._exampleAsyncRepository.AddAsync(dataToInserOnDatabase);
+            await this._surveyAsyncRepository.AddAsync(dataToInsertOnDatabase);
 
             await this._unitOfWork.SaveChangesAsync();
-
-            SurveyModel surveyResponse = new SurveyModel()
-            {
-                Age = model.Age,
-                HairType = model.HairType,
-                HairColour = model.HairColour,
-                HasColouredHair = model.HasColouredHair,
-                NumberWashes = model.NumberWashes,
-                LivingPlace = model.LivingPlace,
-                UseHeatTools = model.UseHeatTools,
-                UseThermalProducts = model.UseThermalProducts,
-                DesiredHair = model.DesiredHair
-            };
-
-            Console.WriteLine(model.ToString());
 
             return this.Ok();
         }
