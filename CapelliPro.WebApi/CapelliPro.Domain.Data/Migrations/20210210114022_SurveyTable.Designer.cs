@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapelliPro.Domain.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210207174020_SurveyTable1")]
-    partial class SurveyTable1
+    [Migration("20210210114022_SurveyTable")]
+    partial class SurveyTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

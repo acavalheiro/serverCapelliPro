@@ -26,8 +26,13 @@ namespace CapelliPro.WebApi.Controllers
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
 
-
     using Microsoft.Extensions.Logging;
+    using CapelliPro.Domain.Interfaces;
+    using CapelliPro.Domain.Models;
+
+    using Microsoft.AspNetCore.Authorization; 
+
+    using Microsoft.Extensions.Identity.Core;
 
     /// <summary>
     /// The survey controller.
@@ -38,16 +43,39 @@ namespace CapelliPro.WebApi.Controllers
     public class SurveyController : ControllerBase
     {
         private readonly ILogger<SurveyController> _logger;
-        public SurveyController(ILogger<SurveyController> logger)
+        private readonly IAsyncRepository<Example> _exampleAsyncRepository;
+
+        private readonly IUnitOfWork _unitOfWork;
+
+        public SurveyController(ILogger<SurveyController> logger,  IAsyncRepository<Example> exampleAsyncRepository, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            this._exampleAsyncRepository = exampleAsyncRepository;
+            this._unitOfWork = unitOfWork;
         }
 
         [HttpPost]
         [Route("survey")]
         public async Task<IActionResult> SurveyResponseQuestions([FromBody] SurveyModel model)
         {
-            SurveyResponse surveyResponse = new SurveyResponse()
+
+            var currentUser = this.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier);
+
+            var dataToInserOnDatabase = new Survey {Age = model.Age,
+                HairType = model.HairType,
+                HairColour = model.HairColour,
+                HasColouredHair = model.HasColouredHair,
+                NumberWashes = model.NumberWashes,
+                LivingPlace = model.LivingPlace,
+                UseHeatTools = model.UseHeatTools,
+                UseThermalProducts = model.UseThermalProducts,
+                DesiredHair = model.DesiredHair };
+
+            await this._exampleAsyncRepository.AddAsync(dataToInserOnDatabase);
+
+            await this._unitOfWork.SaveChangesAsync();
+
+            SurveyModel surveyResponse = new SurveyModel()
             {
                 Age = model.Age,
                 HairType = model.HairType,

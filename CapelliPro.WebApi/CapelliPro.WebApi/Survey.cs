@@ -10,7 +10,7 @@ namespace CapelliPro.WebApi
 
         public string HairColour { get; set; }  
 
-        public Boolean HasColouredHair { get; set; }  
+        public string HasColouredHair { get; set; }  
 
         public string NumberWashes { get; set; } 
 
@@ -18,7 +18,7 @@ namespace CapelliPro.WebApi
 
         public string UseHeatTools { get; set; } 
 
-        public Boolean UseThermalProducts { get; set; }  
+        public string UseThermalProducts { get; set; }  
 
         public string DesiredHair { get; set; } 
 

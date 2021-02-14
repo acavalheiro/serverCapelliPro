@@ -22,7 +22,7 @@ namespace CapelliPro.Authorization.Models
 
         public string HairColour { get; set; }  
 
-        public bool HasColouredHair { get; set; }  
+        public string HasColouredHair { get; set; }  
 
         public string NumberWashes { get; set; } 
 
@@ -30,7 +30,7 @@ namespace CapelliPro.Authorization.Models
 
         public string UseHeatTools { get; set; } 
 
-        public bool UseThermalProducts { get; set; }  
+        public string UseThermalProducts { get; set; }  
 
         public string DesiredHair { get; set; } 
     }
