@@ -24,6 +24,7 @@ namespace CapelliPro.Domain.Data
     {
         public DbSet<Example> Examples { get; set; }
         public DbSet<Survey> Surveys { get; set; }
+        public DbSet<Diagnostic> Diagnostics { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationContext"/> class.

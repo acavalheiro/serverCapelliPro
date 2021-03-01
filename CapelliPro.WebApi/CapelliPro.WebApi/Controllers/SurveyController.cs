@@ -54,15 +54,34 @@ namespace CapelliPro.WebApi.Controllers
             this._unitOfWork = unitOfWork;
         }
 
+
+        [HttpGet]
+        [Route("HasValidSurvey")]
+        public async Task<IActionResult> HasValidSurvey()
+        {
+            var currentUser = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var allSurveys = await this._surveyAsyncRepository.ListAllAsync();
+            var exists = allSurveys.Any(s => s.UserId == currentUser);
+
+            if (exists)
+                return this.Ok();
+
+            return NotFound();
+        }
+
         [HttpPost]
         [Route("survey")]
         public async Task<IActionResult> SurveyResponseQuestions([FromBody] SurveyModel model)
         {
 
-            var currentUser = this.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier);
+            var currentUser = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(currentUser))
+                return this.BadRequest("User not found");
 
             var dataToInsertOnDatabase = new Survey {
-                UserId = model.UserId,
+                UserId = currentUser,
                 Age = model.Age,
                 HairType = model.HairType,
                 HairColour = model.HairColour,

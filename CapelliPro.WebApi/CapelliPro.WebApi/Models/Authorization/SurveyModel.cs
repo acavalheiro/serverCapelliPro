@@ -16,8 +16,8 @@ namespace CapelliPro.WebApi.Models.Authorization
     /// </summary>
     public class SurveyModel
     {
-        [Required(ErrorMessage = "UserId is required")]  
-        public string UserId { get; set; }    
+        // [Required(ErrorMessage = "UserId is required")]  
+        // public string UserId { get; set; }    
 
         [Required(ErrorMessage = "Age is required")]  
         public string Age { get; set; }  
