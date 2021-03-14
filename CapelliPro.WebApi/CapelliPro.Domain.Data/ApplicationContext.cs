@@ -6,6 +6,9 @@
 //   Defines the ApplicationContext type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+//ligaçao à bd
+
+
 
 namespace CapelliPro.Domain.Data
 {
@@ -20,6 +23,9 @@ namespace CapelliPro.Domain.Data
     public class ApplicationContext : DbContext
     {
         public DbSet<Example> Examples { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
+        public DbSet<Diagnostic> Diagnostics { get; set; }
+        public DbSet<ImageCapilar> ImagesCapilares { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationContext"/> class.

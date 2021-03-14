@@ -133,6 +133,18 @@ namespace CapelliPro.WebApi.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, new { Error = result.Errors.ToString() });
 
             return this.Ok();  
-        }  
+        }
+
+
+        [HttpGet]
+        [Route("GetUserName")]
+        public async Task<ActionResult<UserInfo>> GetUserName()
+        {
+            var currentUser = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = await this.userManager.GetUserAsync(this.User); 
+           
+            return new UserInfo { Name = user.Name, Email = user.Email};
+        }
     }
 }
