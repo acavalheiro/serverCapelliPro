@@ -9,30 +9,17 @@
 
 namespace CapelliPro.WebApi.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
-    using System.Text;
     using System.Threading.Tasks;
 
-    using CapelliPro.Authorization.Models;
     using CapelliPro.WebApi.Models.Authorization;
 
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.IdentityModel.Tokens;
-
+  
     using Microsoft.Extensions.Logging;
     using CapelliPro.Domain.Interfaces;
     using CapelliPro.Domain.Models;
-
-    using Microsoft.AspNetCore.Authorization; 
-
-    using Microsoft.Extensions.Identity.Core;
 
     /// <summary>
     /// The survey controller.

@@ -26,12 +26,12 @@ namespace CapelliPro.WebApi.Controllers
     [ApiController]
     public class DiagnosticController : ControllerBase
     {
-        private readonly ILogger<SurveyController> _logger;
+        private readonly ILogger<DiagnosticController> _logger;
         private readonly IAsyncRepository<Diagnostic> _diagnosticAsyncRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public DiagnosticController(ILogger<SurveyController> logger,  IAsyncRepository<Diagnostic> diagnosticAsyncRepository, IUnitOfWork unitOfWork)
+        public DiagnosticController(ILogger<DiagnosticController> logger,  IAsyncRepository<Diagnostic> diagnosticAsyncRepository, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             this._diagnosticAsyncRepository = diagnosticAsyncRepository;

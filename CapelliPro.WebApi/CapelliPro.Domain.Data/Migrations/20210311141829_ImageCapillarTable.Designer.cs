@@ -3,14 +3,16 @@ using System;
 using CapelliPro.Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CapelliPro.Domain.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210311141829_ImageCapillarTable")]
+    partial class ImageCapillarTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,26 +57,6 @@ namespace CapelliPro.Domain.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Examples");
-                });
-
-            modelBuilder.Entity("CapelliPro.Domain.Models.ImageCapilar", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("PathToImage")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ImagesCapilares");
                 });
 
             modelBuilder.Entity("CapelliPro.Domain.Models.Survey", b =>
